@@ -1,0 +1,7 @@
+﻿services:
+  chamcong:
+    image: chamcong
+    build:
+      context: .
+      dockerfile: ChamCong/Dockerfile
+
