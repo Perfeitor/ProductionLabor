@@ -24,7 +24,7 @@ với mục tiêu giảm tải công việc thủ công cho tổ trưởng và p
 - **Blazor Server**: giao diện và xử lý nghiệp vụ phía UI.
 - **ASP.NET Core**: nền tảng của toàn bộ hệ thống.
 - **Entity Framework Core**: quản lý dữ liệu.
-- **SQL Server** hoặc **PostgreSQL** (tùy môi trường triển khai).
+- **PostgreSQL**
 
 ## 📂 Cấu trúc dự án
 - `ProductionLabor` – phần nghiệp vụ cốt lõi.
