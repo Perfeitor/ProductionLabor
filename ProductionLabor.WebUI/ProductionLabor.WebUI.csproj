@@ -13,4 +13,13 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MudBlazor" Version="8.14.0" />
+      <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" Version="1.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Shared\Shared.csproj" />
+    </ItemGroup>
+
 </Project>
