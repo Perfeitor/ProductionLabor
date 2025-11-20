@@ -142,12 +142,12 @@ public class AuthController : ControllerBase
         catch (ArgumentException e)
         {
             await Console.Error.WriteLineAsync(e.Message);
-            return BadRequest("Tham số không hợp lệ.");
+            return BadRequest("Invalid argument.");
         }
         catch (InvalidOperationException e)
         {
             await Console.Error.WriteLineAsync(e.Message);
-            return BadRequest("Không thể thực hiện thao tác này.");
+            return BadRequest("Unable to perform this operation.");
         }
         catch (Exception e)
         {
