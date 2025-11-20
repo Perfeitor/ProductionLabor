@@ -6,3 +6,4 @@ riderModule.iml
 /.idea
 ApiServer/appsettings.Development.json
 *.user
+/.vs
