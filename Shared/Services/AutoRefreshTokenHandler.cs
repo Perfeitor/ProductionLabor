@@ -2,12 +2,12 @@
 
 namespace Shared.Services
 {
-    public class RefreshTokenHandler : DelegatingHandler
+    public class AutoRefreshTokenHandler : DelegatingHandler
     {
         private readonly IHttpClientFactory _factory;
         private static readonly SemaphoreSlim _refreshLock = new SemaphoreSlim(1, 1);
 
-        public RefreshTokenHandler(IHttpClientFactory factory)
+        public AutoRefreshTokenHandler(IHttpClientFactory factory)
         {
             _factory = factory;
         }
