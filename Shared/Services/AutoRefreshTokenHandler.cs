@@ -23,7 +23,8 @@ namespace Shared.Services
                 await _refreshLock.WaitAsync(cancellationToken);
                 try
                 {
-                    var secondTry = await base.SendAsync(CloneRequest(request), cancellationToken);
+                    var secondRequest = await CloneRequest(request);
+                    var secondTry = await base.SendAsync(secondRequest, cancellationToken);
 
                     if (secondTry.StatusCode != HttpStatusCode.Unauthorized)
                     {
@@ -40,7 +41,8 @@ namespace Shared.Services
 
                     request.Headers.Remove("Cookie");
 
-                    return await base.SendAsync(CloneRequest(request), cancellationToken);
+                    var finalRequest = await CloneRequest(request);
+                    return await base.SendAsync(finalRequest, cancellationToken);
                 }
                 finally
                 {
@@ -51,7 +53,7 @@ namespace Shared.Services
             return response;
         }
 
-        private HttpRequestMessage CloneRequest(HttpRequestMessage original)
+        private async Task<HttpRequestMessage> CloneRequest(HttpRequestMessage original)
         {
             var clone = new HttpRequestMessage(original.Method, original.RequestUri);
 
@@ -62,7 +64,9 @@ namespace Shared.Services
 
             if (original.Content != null)
             {
-                clone.Content = new StreamContent(original.Content.ReadAsStream());
+                var bytes = await original.Content.ReadAsByteArrayAsync();
+                clone.Content = new ByteArrayContent(bytes);
+
                 foreach (var header in original.Content.Headers)
                 {
                     clone.Content.Headers.TryAddWithoutValidation(header.Key, header.Value);
